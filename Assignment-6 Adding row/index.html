@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 6 - Add Row to Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 300px;
+      margin-top: 20px;
+    }
+    td, th {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: center;
+    }
+    button {
+      margin-top: 15px;
+      padding: 8px 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Assignment 6 - Add Row on Button Click</h2>
+
+  <table id="myTable">
+    <tbody>
+      <tr>
+        <td>Row 1, Col 1</td>
+        <td>Row 1, Col 2</td>
+        <td>Row 1, Col 3</td>
+      </tr>
+      <tr>
+        <td>Row 2, Col 1</td>
+        <td>Row 2, Col 2</td>
+        <td>Row 2, Col 3</td>
+      </tr>
+      <tr>
+        <td>Row 3, Col 1</td>
+        <td>Row 3, Col 2</td>
+        <td>Row 3, Col 3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button id="addRowBtn">Insert Row</button>
+
+  <script>
+    const table = document.querySelector("#myTable tbody");
+    const button = document.querySelector("#addRowBtn");
+    
+    let rowCnt = table.rows.length;
+    
+    button.addEventListener("click", () => {
+      rowCnt++;
+      const newRow = document.createElement("tr");
+      
+      for(let i=1; i<=3; i++){
+        const cell = document.createElement("td");
+        cell.textContent = `Row ${rowCnt}, Col ${i}`;
+        newRow.appendChild(cell);
+      }
+      
+      table.appendChild(newRow);
+      
+    })
+    
+  </script>
+
+</body>
+</html>

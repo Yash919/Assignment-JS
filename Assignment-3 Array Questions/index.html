@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product List</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    button {
+      margin-left: 10px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Assignment - 3</h2>
+  <div id="result1"></div>
+  <div id="result2"></div>
+  <div id="result3"></div>
+  
+  <script>
+    let res1 = document.querySelector("#result1");
+    let res2 = document.querySelector("#result2");
+    let res3 = document.querySelector("#result3");
+    
+    const clothingStock = [
+         {
+           id: "1",
+           color: "red",
+           category: "men shirt",
+           item: "Regular Fit Men Shirt",
+           inStock: true
+         },
+         {
+           id: "2",
+           color: "green",
+           category: "women shirt",
+           item: "Slim Fit Women Shirt",
+           inStock: true
+         },
+         {
+           id: "3",
+           color: "blue",
+           category: "men shirt",
+           item: "Oversized Men Shirt",
+           inStock: false
+         },
+         {
+           id: "4",
+           color: "yellow",
+           category: "men tshirt",
+           item: "Regular Fit Men Tshirt",
+           inStock: false
+         },
+        {
+           id: "5",
+           color: "magenta",
+           category: "women jeans",
+           item: "Ankle Lenght Women Jeans",
+           inStock: true
+         },
+         {
+           id: "6",
+           color: "yellow",
+           category: "men shirt",
+           item: "Casual Fit Men Shirt",
+           inStock: true
+         },
+         {
+           id: "7",
+           color: "green",
+           category: "men jeans",
+           item: "Carrot Fit Men Jeans",
+           inStock: true
+         },
+         {
+           id: "8",
+           color: "red",
+           category: "women shirt",
+           item: "Casual Fit Women Shirt",
+           inStock: false
+         }
+        ];
+    
+    function womenShirts(){
+      const res = new Set();
+      clothingStock.forEach(item => {
+        if(item.category === "women shirt"){
+          res.add(item.color);
+        }
+      })
+      
+      res1.textContent = `Ans:1 
+      Women Shirts are:  
+      ${[...res].join(", ")} `; 
+    }
+  
+    
+    
+    function menShirtsInStock(){
+      const colors = new Set();
+      clothingStock.forEach(item => {
+        if(item.category === "men shirt" && item.inStock){
+          colors.add(item.color);
+        }
+      })
+      
+      res2.textContent = `Ans:2 
+      Men Shirts which are in stock :  
+      ${[...colors].join(", ")}  `; 
+      
+    }
+  
+    function arrayOfStock(){
+      let array = [];
+      clothingStock.forEach(item => {
+        if(item.inStock){
+          array.push(
+        `ID: ${item.id}, Item: ${item.item}, Category: ${item.category}, Color: ${item.color}, In Stock: ${item.inStock}`
+      );
+        }
+      })
+      
+      res3.textContent = `Ans:3\nRecords of those which are in stock:\n
+      ${array.join("\n")}`;
+
+      
+    }
+    
+    womenShirts();
+    menShirtsInStock();
+    arrayOfStock();
+    
+  </script>
+</body>
+</html>

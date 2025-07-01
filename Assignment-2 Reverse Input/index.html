@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product List</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    button {
+      margin-left: 10px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Assignment - 2</h2>
+  <input id="input-field" placeholder="Enter your name here" />
+  <button id="btn">Click</button>
+  <div id="result"></div>
+
+  <script>
+    let input = document.querySelector("#input-field");
+    let btn = document.querySelector("#btn");
+    let result = document.querySelector("#result");
+    
+    function reverseWord(){
+      let userInput = input.value;
+      let reversed = userInput.split("").reverse().join("");
+      result.textContent = `Reversed Name of yours : ${reversed}`;
+    }
+    
+    btn.addEventListener("click", reverseWord);
+    
+    // To press enter 
+    input.addEventListener("keydown", (e) => {
+      if(e.key === "Enter"){
+        reverseWord();
+      }
+    });
+  
+    
+  </script>
+</body>
+</html>

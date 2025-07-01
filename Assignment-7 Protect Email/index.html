@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 7 - Protect Email</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      padding: 8px 12px;
+      margin-right: 8px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .highlight {
+      font-weight: bold;
+      color: darkgreen;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Assignment 7 - Protect Email Address</h2>
+
+  <input type="text" id="emailInput" placeholder="Enter your email" />
+  <button id="protectBtn">Protect</button>
+
+  <div id="result"></div>
+
+  <script>
+    
+    const input = document.querySelector("#emailInput");
+    const button = document.querySelector("#protectBtn");
+    const resultDiv = document.querySelector("#result");
+    
+    function protectEmail(email){
+      const [username,domain]  = email.split("@");
+      const half = Math.ceil(username.length/2);
+      const hidden = username.slice(0,half);
+      return `${hidden}...@${domain}`;
+    }
+    
+    function handleProtect(){
+      const email = input.value.trim();
+      resultDiv.innerHTML = "";
+      if (!email || !email.includes("@")) {
+        resultDiv.innerHTML = `<p class="error">❌ Please enter a valid email address.</p>`;
+        return;
+      }
+      const protectedEmail = protectEmail(email);
+      resultDiv.innerHTML = `
+        <p>✅ <span class="highlight">Original Email:</span> ${email}</p>
+        <p>�� <span class="highlight">Protected Email:</span> ${protectedEmail}</p>
+      `;
+    }
+    
+    
+    button.addEventListener("click", handleProtect);
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        handleProtect();
+      }
+    });  
+    
+  </script>
+
+</body>
+</html>

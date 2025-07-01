@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Assignment 5 - Highlight Words</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    .highlight {
+      background-color: lightgreen;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Assignment 5 - Highlight Words > 5 Characters</h2>
+
+  <input id="text-input" placeholder="Enter a sentence" style="width: 300px;" />
+  <button id="highlight-btn">Highlight</button>
+
+  <ul id="sentence-list"></ul>
+
+  <script>
+    const input = document.querySelector("#text-input");
+    const button = document.querySelector("#highlight-btn");
+    const sentenceList = document.querySelector("#sentence-list");
+
+    function highlightAndAddSentence() {
+      const sentence = input.value.trim();
+      if (!sentence) return;
+
+      const words = sentence.split(" ");
+
+      const highlighted = words.map(word => {
+        return word.length > 5
+          ? `<span class="highlight">${word}</span>`
+          : word;
+      });
+
+      const li = document.createElement("li");
+      li.innerHTML = highlighted.join(" ");
+      sentenceList.appendChild(li);
+
+      input.value = "";
+    }
+
+    button.addEventListener("click", highlightAndAddSentence);
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        highlightAndAddSentence();
+      }
+    });
+  </script>
+
+</body>
+</html>

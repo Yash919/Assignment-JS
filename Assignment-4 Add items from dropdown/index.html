@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Assignment 4 - Favorites</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    select, button {
+      margin: 10px 5px;
+      padding: 5px 10px;
+    }
+    ul {
+      margin-top: 15px;
+    }
+    li {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Assignment 4 - Add to Favorites</h2>
+
+  <select id="item-select">
+    <option value="" disabled selected>Select an item</option>
+    <option value="Shirt">Shirt</option>
+    <option value="Jeans">Jeans</option>
+    <option value="T-shirt">T-shirt</option>
+    <option value="Denim Jacket">Denim Jacket</option>
+    <option value="Casual Shoes">Casual Shoes</option>
+  </select>
+
+  <button id="add-btn">Add to Favorites</button>
+
+  <h3>Your Favorite Items:</h3>
+  <ul id="favorites-list"></ul>
+  
+  <script>
+    const select = document.querySelector("#item-select");
+    const button = document.querySelector("#add-btn");
+    const favouriteList = document.querySelector("#favorites-list");
+    
+    let favourites = new Set();
+    
+    function result(){
+      const selectedItem = select.value;
+      
+      if (!selectedItem) return;
+      
+      if(favourites.has(selectedItem)){
+        alert(`"${selectedItem}" is already in your favorites!`);
+      }else{
+        favourites.add(selectedItem);
+        
+        const li = document.createElement("li");
+        li.textContent = selectedItem;
+        favouriteList.append(li);
+        // To Reset the dropdown
+        select.value = "";
+      }
+    }
+    
+    button.addEventListener("click",result);
+    
+    select.addEventListener("keydown", (e) => {
+      if(e.key === "Enter"){
+        result();
+      }
+    })
+    
+  </script>
+</body>
+</html>

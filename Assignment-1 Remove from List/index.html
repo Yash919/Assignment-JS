@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product List</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    button {
+      margin-left: 10px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Product List</h2>
+  <ul id="product-list"></ul>
+
+  <script>
+    let products = [
+      { id: "1", item: "Shirt" },
+      { id: "2", item: "Jeans" },
+      { id: "3", item: "T-shirt" },
+      { id: "4", item: "Denim Jacket" },
+      { id: "5", item: "Casual Shoes" }
+    ];
+
+    const listContainer = document.querySelector("#product-list");
+
+    function renderList() {
+      listContainer.innerHTML = ""; // Clear previous list
+
+      products.forEach((product, index) => {
+        const li = document.createElement("li");
+        li.textContent = product.item;
+
+        const btn = document.createElement("button");
+        btn.textContent = "Remove";
+        btn.addEventListener("click", () => {
+          products.splice(index, 1);
+          renderList();
+        });
+
+        li.appendChild(btn);
+        listContainer.appendChild(li);
+      });
+    }
+
+    renderList(); 
+  </script>
+</body>
+</html>
