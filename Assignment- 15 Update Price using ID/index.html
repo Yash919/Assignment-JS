@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 15 - Update Price</title>
+  <style>
+   input {
+      padding: 5px;
+      margin: 5px;
+    }
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    ul {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Assignment 15 - Update on the basis of id..</h2>
+ 
+  <input type="number" id="id" placeholder="Id"/>
+  <input type="number" id="price" placeholder="Price"/>
+  <button id = "submit">Submit</button>
+  
+  <ul id = "productList"></ul>
+
+  
+  <script>
+    const productList = document.querySelector("#productList");
+    const idBtn = document.querySelector("#id");
+    const price = document.querySelector("#price");
+    const submitBtn = document.querySelector("#submit");
+  
+    const initialData = [
+      { id: 1, item: "shirt", price: 300 },
+      { id: 2, item: "tshirt", price: 499 },
+      { id: 3, item: "jeans", price: 500 },
+      { id: 4, item: "trousers", price: 250 },
+      { id: 5, item: "chinos", price: 300 }
+    ];
+    
+    
+    function renderList() {
+      productList.innerHTML = "";
+      initialData.forEach(product => {
+        const li = document.createElement("li");
+        li.textContent = `ID: ${product.id} :: ${product.item}, Rs. ${product.price}`;
+        productList.appendChild(li);
+      });
+    }
+    
+    // Update price by ID
+    submitBtn.addEventListener("click", () => {
+    const id = parseInt(idBtn.value);
+    const newPrice = parseInt(price.value);
+  
+    const found = initialData.find(p => p.id === id);
+    if (found && !isNaN(newPrice)) {
+      found.price = newPrice;
+      renderList();
+      idBtn.value = "";
+      price.value = "";
+    } else {
+      alert("Invalid ID or Price!");
+    }
+  });
+    
+    renderList();
+    
+  </script>
+
+</body>
+</html>
