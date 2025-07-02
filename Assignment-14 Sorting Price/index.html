@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assignment 14 - Car Brands</title>
+  <style>
+   body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    ul {
+      margin-top: 15px;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Assignment 14 - Sorting on the basis of Price..</h2>
+ 
+  <button id = "lowToHigh">Low to High</button>
+  <button id = "highToLow">High to Low</button>
+  
+  <ul id = "itemlist"></ul>
+
+  
+  <script>
+    const btnLowToHigh = document.querySelector("#lowToHigh");
+    const btnHighToLow = document.querySelector("#highToLow");
+    const list = document.querySelector("#itemlist");
+  
+    const initialData = [
+      { id: 1, item: "shirt", price: 300 },
+      { id: 2, item: "tshirt", price: 499 },
+      { id: 3, item: "jeans", price: 500 },
+      { id: 4, item: "trousers", price: 250 },
+      { id: 5, item: "chinos", price: 300 }
+    ];
+    
+    function displayItems(data){
+      list.innerHTML = "";
+      data.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.id} :: ${item.item}, Rs. ${item.price}`;
+        list.append(li);
+      })
+    }
+    
+    btnLowToHigh.addEventListener("click", () => {
+      const sorted = [...initialData].sort((a, b) => a.price - b.price);
+      displayItems(sorted);
+    });
+
+    btnHighToLow.addEventListener("click", () => {
+      const sorted = [...initialData].sort((a, b) => b.price - a.price);
+      displayItems(sorted);
+    });
+    
+    // Show Default View
+    displayItems(initialData);
+    
+  </script>
+
+</body>
+</html>
