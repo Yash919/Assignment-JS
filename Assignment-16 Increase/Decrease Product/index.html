@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Assignment 16 - Price Change</title>
+  <style>
+    body { font-family: sans-serif; }
+    .strike { text-decoration: line-through; color: gray; }
+    .highlight { color: red; font-weight: bold; }
+    .quantity-btn { padding: 5px 10px; cursor: pointer; font-size: 18px; }
+  </style>
+</head>
+<body>
+
+  <h2>Assignment 16 - Increase/Decrease Price Product</h2>
+ 
+  <p>Men Sneakers</p>
+  
+  <p>
+    <span id="price">Rs. 18495</span>
+    <span class="strike">Rs. 22499</span>
+    <span class="highlight">(30% OFF)</span>
+  </p>
+
+  <p>
+    Quantity: 
+    <button class="quantity-btn" id = "decrease">-</button>
+    <span id="quantity">3</span>
+    <button class="quantity-btn" id = "increase">+</button>
+  </p>
+
+  <h3>Total:</h3>
+  <p id="total">Rs. 55485</p>
+
+  
+  <script>
+    const discountedPrice = 18495;
+    const qtySpan = document.getElementById("quantity");
+    const totalSpan = document.getElementById("total");
+    const btnInc = document.getElementById("increase");
+    const btnDec = document.getElementById("decrease");
+    
+    let quantity = 3;
+    
+    function updateTotal(){
+      totalSpan.textContent = `Rs. ${discountedPrice * quantity}`;
+    }
+    
+    btnInc.addEventListener("click", () => {
+      quantity++;
+      qtySpan.textContent = quantity;
+      updateTotal();
+    })
+    
+    btnDec.addEventListener("click", () => {
+      if(quantity > 0){
+        quantity--;
+        qtySpan.textContent = quantity;
+        updateTotal();
+      }else{
+        alert("Quantity can't be negative.");
+      }
+    })
+    
+    updateTotal();
+    
+    
+  </script>
+
+</body>
+</html>
